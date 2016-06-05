@@ -1,14 +1,10 @@
 BAG_BUTTONS = {
-	"MainMenuBarBackpackButton",
-	"CharacterBag0Slot",
-	"CharacterBag1Slot",
-	"CharacterBag2Slot",
-	"CharacterBag3Slot",
+	"OrderHallCommandBar",
 	}
 local ignoreDVBBAalpha
 local DVBBAlphaTimer
 
-local function SetAlpha(frame)
+local function SetOHAlpha(frame)
 	if ignoreDVBBAalpha then return end
 	ignoreDVBBAalpha = true
 	if frame:IsMouseOver() then
@@ -18,7 +14,6 @@ local function SetAlpha(frame)
 	end
 	ignoreDVBBAalpha = nil
 end
-
 
 local function showDVBB(self)
 	if DVBBAlphaTimer then DVBBAlphaTimer:Cancel() end
@@ -43,7 +38,7 @@ end
 
 for _, v in ipairs(BAG_BUTTONS) do
     v = _G[v]
-    hooksecurefunc(v, "SetAlpha", SetAlpha)
+    hooksecurefunc(v, "SetOHAlpha", SetAlpha)
     v:HookScript("OnEnter", showDVBB)
     v:HookScript("OnLeave", delayHideDVBB)
     v:SetAlpha(0)
