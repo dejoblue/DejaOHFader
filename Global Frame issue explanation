@@ -1,0 +1,23 @@
+The Order Hall Command Bar only appears when players are in their respective order hall. The frame is ubiquitous to all classes. 
+
+I am trying to hide the new Order Hall command bar and only show it on mouseover at the top of the screen. When mouseout occurs I want a slight delay so that it doesn't flicker if other elements in the bar are mouseovered while perusing the bar.
+
+I could just remove the debuggin texture for the event frame I created, orderhall, and call it a day:
+
+			local torderhall=orderhall:CreateTexture(nil,"ARTWORK")
+				torderhall:SetAllPoints(orderhall)
+				torderhall:SetColorTexture(0, 192, 255, 0.7)
+				
+ it will work but the event frame I created, orderhall, will always be on screen, albeit invisible, but I want to hide the frame or at least trigger "orderhall:EnableMouse(false)" when outside of the Order Hall so that it doesn't cause potential mouseover issues with other frames, namely the buff button frames.
+
+I can't figure out how to check if the global frame "OrderHallCommandBar" is shown or visible. "OrderHallCommandBar" appears to be protected but I can't find any functions to hook to.
+
+I tried setting "OrderHallCommandBar" as my frame "orderhall" 's parent, hoping when "OrderHallCommandBar" would hide so would "orderhall", to no avail.
+
+There is a default Blizzard made addon called "Blizzard_OrderHallUI" so I can check to see if it is loaded. Problem is that it doesn't unload after initialization, even when changing zones, so if I physically walk outside of an Order Hall can't usefully check if "Blizzard_OrderHallUI" is loaded because it is always loaded after an initial visit to an Order Hall. So once I leave and then go back into the Order Hall during the same session then the check is redundant and useless.
+
+I will append "Blizzard_OrderHallUI" 's scripts: Blizzard_OrderHallCommandBar.lua and Blizzard_OrderHallCommandBar.xml
+
+Anyway. Thanks for any help you can provide. I am not really educated on this, just tinkering, heh, so I don;t know common logic tricks or problem solving or, I guess "bootstrapping" procedures?
+
+Cheers!
