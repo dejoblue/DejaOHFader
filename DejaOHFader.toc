@@ -1,0 +1,7 @@
+## Interface: 70000
+## Version: 7.0.3 b1
+## Title: DejaOHFader
+## Authors: Dejablue
+## Notes: Dejablue's simple Order Hall command bar mouseover fader.
+
+DejaOHFader.lua
