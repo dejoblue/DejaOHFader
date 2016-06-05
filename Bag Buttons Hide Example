@@ -1,0 +1,50 @@
+BAG_BUTTONS = {
+	"MainMenuBarBackpackButton",
+	"CharacterBag0Slot",
+	"CharacterBag1Slot",
+	"CharacterBag2Slot",
+	"CharacterBag3Slot",
+	}
+local ignoreDVBBAalpha
+local DVBBAlphaTimer
+
+local function SetAlpha(frame)
+	if ignoreDVBBAalpha then return end
+	ignoreDVBBAalpha = true
+	if frame:IsMouseOver() then
+		frame:SetAlpha(1)
+	else
+		frame:SetAlpha(0)
+	end
+	ignoreDVBBAalpha = nil
+end
+
+
+local function showDVBB(self)
+	if DVBBAlphaTimer then DVBBAlphaTimer:Cancel() end
+	for _, v in ipairs(BAG_BUTTONS) do
+		ignoreDVBBAalpha = true
+		_G[v]:SetAlpha(1)
+		ignoreDVBBAalpha = nil
+	end
+end
+
+local function hideDVBB(self)
+	for _, v in ipairs(BAG_BUTTONS) do
+		ignoreDVBBAalpha = true
+		_G[v]:SetAlpha(0)
+		ignoreDVBBAalpha = nil
+	end
+end
+
+local function delayHideDVBB(self)
+	DVBBAlphaTimer = C_Timer.NewTimer(0.75, hideDVBB)
+end
+
+for _, v in ipairs(BAG_BUTTONS) do
+    v = _G[v]
+    hooksecurefunc(v, "SetAlpha", SetAlpha)
+    v:HookScript("OnEnter", showDVBB)
+    v:HookScript("OnLeave", delayHideDVBB)
+    v:SetAlpha(0)
+end
