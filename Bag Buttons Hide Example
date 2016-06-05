@@ -38,7 +38,7 @@ end
 
 for _, v in ipairs(BAG_BUTTONS) do
     v = _G[v]
-    hooksecurefunc(v, "SetOHAlpha", SetAlpha)
+    hooksecurefunc(v, "SetAlpha", SetOHAlpha)
     v:HookScript("OnEnter", showDVBB)
     v:HookScript("OnLeave", delayHideDVBB)
     v:SetAlpha(0)
